@@ -1,7 +1,7 @@
 import java.util.Collection;
 
 /**
- * The 
+ * This is my version of the ArrayList class. This was created so I would have a better understanding of how an ArrayList works.
  * @author Jaden Leonard
  * @version 08/31/18
  */
@@ -92,11 +92,19 @@ public boolean contains(Object obj) {
     
 }*/
 
-public int size() {
+    /**
+     * This method returns the current size of the ArrayList.
+     * @return size The size of the ArrayList
+     */
+    public int size() {
     return size;
 }
 
-public boolean isEmpty() {
+    /**
+     * Returns whether the current array is empty or not.
+     * @return Returns true if the size of the array is 0.
+     */
+    public boolean isEmpty() {
     return size <= 0;
 }
 
@@ -107,6 +115,7 @@ public void ensureCapacity(int minCapacity) {
         for(int i = 0; i < values.length; i++) {
             rmyArray[i] = values[i];
         }
+        values = rmyArray;
     }
 }
 
