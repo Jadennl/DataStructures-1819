@@ -42,6 +42,7 @@ public class StringUtilitiesTest {
     
     @Test(expected = NullPointerException.class)
     public void testReverseWithNull() {
+        assertNull(default1.toString());
         default1.reverse();
     }
 
