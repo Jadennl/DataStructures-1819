@@ -185,12 +185,12 @@ public class StringUtilities
      * Counts the number of times a given String is found in the original
      * @param other The string to be looked for
      * @return The number of times other is in the original String
-     * @throws NullPointerException if either the original or other string are null
+     * @throws NullPointerException if strings are null
      */
     public int numMatches( String other )
     {
         int match = 0;
-        for (int i = 0; i < string.length() - other.length() + 1; i ++ ) {
+        for (int i = 0; i < string.length() - other.length() + 1; i++ ) {
             if ( string.substring(i, i + other.length()).equals(other) ) {
                 match++;
                 i += other.length() - 1;
