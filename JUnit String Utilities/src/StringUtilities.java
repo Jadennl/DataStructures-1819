@@ -131,7 +131,7 @@ public class StringUtilities
         int numPeriods = 0;
         for (int i = 0; i < string.length(); i++){
             char c = string.charAt(i);
-            if (i == 0 && !Character.isDigit(c) && c != '-') return false;
+            if (i == 0 && !Character.isDigit(c) && c != '-' && c != '.' ) return false;
             else if (c == '.'){
                 numPeriods++;
                 if (numPeriods > 1)return false;
@@ -204,7 +204,11 @@ public class StringUtilities
         throwNull();
         return string.toCharArray();
     }
-
+    
+    /**
+     * Checks if the string is null.
+     * @throws NullPointerException if the String is null
+     */
     private void throwNull(){
         if ( string == null ) throw new NullPointerException();
     }
