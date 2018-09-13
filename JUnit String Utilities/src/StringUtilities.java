@@ -51,13 +51,11 @@ public class StringUtilities
      */
     public String reverse()
     {
-        throwNull();
         StringBuilder ans = new StringBuilder();
         for ( int i = string.length() - 1; i >= 0; i-- )
         {
             ans.append( string.charAt(i) );
         }
-
         return ans.toString();
     }
 
@@ -72,7 +70,7 @@ public class StringUtilities
      */
     public String reverse(int from, int to)
     {
-        throwNull();
+        string.length();
         if (from < 0 || from >= string.length() || to < 0 || to >= string.length() ) throw new IllegalArgumentException();
         StringBuilder ans = new StringBuilder();
         for (int i = to - 1; i >= from; i--) {
@@ -88,7 +86,6 @@ public class StringUtilities
      */
     public boolean isAllUpper()
     {
-        throwNull();
         return string.equals(string.toUpperCase());
     }
 
@@ -99,7 +96,6 @@ public class StringUtilities
      */
     public boolean isAllLower()
     {
-        throwNull();
         return string.equals(string.toLowerCase());
     }
 
@@ -110,7 +106,6 @@ public class StringUtilities
      */
     public boolean containsNumbers()
     {
-        throwNull();
         for (char c : string.toCharArray()){
             if (Character.isDigit(c)) return true;
         }
@@ -127,7 +122,6 @@ public class StringUtilities
      */
     public boolean isNumber()
     {
-        throwNull();
         int numPeriods = 0;
         for (int i = 0; i < string.length(); i++){
             char c = string.charAt(i);
@@ -149,7 +143,6 @@ public class StringUtilities
      */
     public int numConsecutiveDuplicates()
     {
-        throwNull();
         int consec = 0;
         char prev = '\u0000';
         for (char c : string.toCharArray()){
@@ -167,7 +160,7 @@ public class StringUtilities
      */
     public int numMatches( char c )
     {
-        throwNull();
+        
         int match = 0;
         for ( char ch : string.toCharArray()){
             if ( ch == c ) match++;
@@ -183,7 +176,6 @@ public class StringUtilities
      */
     public int numMatches( String other )
     {
-        throwNull();
         int match = 0;
         for (int i = 0; i < string.length() - other.length() + 1; i ++ ){
             if ( string.substring(i, i + other.length()).equals(other) ){
@@ -201,16 +193,6 @@ public class StringUtilities
      */
     public char [] asArray()
     {
-        throwNull();
         return string.toCharArray();
     }
-    
-    /**
-     * Checks if the string is null.
-     * @throws NullPointerException if the String is null
-     */
-    private void throwNull(){
-        if ( string == null ) throw new NullPointerException();
-    }
-
 }
