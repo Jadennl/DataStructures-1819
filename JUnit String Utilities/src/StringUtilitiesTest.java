@@ -1,5 +1,6 @@
 package src;
 
+import com.sun.source.tree.AssertTree;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -68,8 +69,8 @@ public class StringUtilitiesTest {
 
     @Test
     public void testReverseWithRandomStuff() {
-        StringUtilities s = new StringUtilities("╥æ±B è\n");
-        assertEquals("\nè B±æ╥", s.reverse());
+        StringUtilities s = new StringUtilities("oaew dda\n");
+        assertEquals("\nadd weao", s.reverse());
 
     }
 
@@ -104,7 +105,61 @@ public class StringUtilitiesTest {
     @Test
     public void testCaps(){
         StringUtilities s = new StringUtilities("WAKE UP !!");
-        assertEquals(true, s.isAllUpper());
+        assertTrue(s.isAllUpper());
     }
-    
+
+    @Test
+    public void setString() {
+        default3.setString(default2.toString());
+        assertEquals(default2.toString(), default3.toString() );
+    }
+
+    @Test
+    public void testIsAllLower() {
+        assertTrue( default4.isAllLower() );
+    }
+
+    @Test
+    public void containsNumbersTrue() {
+        StringUtilities s = new StringUtilities("F00die");
+        assertTrue(s.containsNumbers());
+    }
+
+    @Test
+    public void containsNumbersFalse() {
+        assertFalse(default5.containsNumbers());
+    }
+
+    @Test
+    public void isNumberTrue() {
+        StringUtilities s = new StringUtilities("9978");
+        assertTrue(s.isNumber());
+    }
+
+    @Test
+    public void numConsecutiveDuplicates() {
+        assertEquals(5, default5.numConsecutiveDuplicates());
+    }
+
+    @Test
+    public void numMatchesChar() {
+        assertEquals(3, default2.numMatches('l'));
+    }
+
+    @Test
+    public void numMatchesString() {
+        StringUtilities s = new StringUtilities("ManManBoyManMan");
+        assertEquals(4, s.numMatches("Man"));
+    }
+
+    @Test
+    public void numMatchesStringSameName() {
+        assertEquals(3, default5.numMatches("vv"));
+    }
+
+    @Test
+    public void asArray() {
+        char[] ch = default2.toString().toCharArray();
+        assertArrayEquals(ch, default2.asArray());
+    }
 }

@@ -51,10 +51,7 @@ public class StringUtilities
      */
     public String reverse()
     {
-        if ( string == null )
-        {
-            throw new NullPointerException();
-        }
+        throwNull();
         StringBuilder ans = new StringBuilder();
         for ( int i = string.length() - 1; i >= 0; i-- )
         {
@@ -75,7 +72,7 @@ public class StringUtilities
      */
     public String reverse(int from, int to)
     {
-        if (string == null) throw new NullPointerException();
+        throwNull();
         if (from < 0 || from >= string.length() || to < 0 || to >= string.length() ) throw new IllegalArgumentException();
         StringBuilder ans = new StringBuilder();
         for (int i = to - 1; i >= from; i--) {
@@ -91,7 +88,7 @@ public class StringUtilities
      */
     public boolean isAllUpper()
     {
-        if (string.equals(null)) throw new NullPointerException();
+        throwNull();
         return string.equals(string.toUpperCase());
     }
 
@@ -102,7 +99,7 @@ public class StringUtilities
      */
     public boolean isAllLower()
     {
-        if (string.equals(null)) throw new NullPointerException();
+        throwNull();
         return string.equals(string.toLowerCase());
     }
 
@@ -113,7 +110,7 @@ public class StringUtilities
      */
     public boolean containsNumbers()
     {
-        if (string.equals(null)) throw new NullPointerException();
+        throwNull();
         for (char c : string.toCharArray()){
             if (Character.isDigit(c)) return true;
         }
@@ -187,8 +184,14 @@ public class StringUtilities
     public int numMatches( String other )
     {
         throwNull();
-        //TODO Unfinished method, fix return
-        return 0;
+        int match = 0;
+        for (int i = 0; i < string.length() - other.length() + 1; i ++ ){
+            if ( string.substring(i, i + other.length()).equals(other) ){
+                match++;
+                i += other.length() - 1;
+            }
+        }
+        return match;
     }
 
     /**
@@ -198,16 +201,12 @@ public class StringUtilities
      */
     public char [] asArray()
     {
-        if (string == null) throw new NullPointerException();
-        char[] ar = new char[string.length()];
-        for(int i = 0; i < string.length(); i++ ){
-            ar[i] = string.charAt(i);
-        }
-        return ar;
+        throwNull();
+        return string.toCharArray();
     }
 
     private void throwNull(){
-        if (string == null ) throw new NullPointerException();
+        if ( string == null ) throw new NullPointerException();
     }
 
 }
