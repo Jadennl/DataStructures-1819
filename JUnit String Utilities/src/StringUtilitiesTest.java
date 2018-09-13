@@ -8,6 +8,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
+ * @author jnleo
+ * @version 2018-09-13
  * f
  */
 public class StringUtilitiesTest {
@@ -22,7 +24,7 @@ public class StringUtilitiesTest {
      * ddd
      */
     @Before
-    public void setup()
+    public void setUp()
     {
         default1 = new StringUtilities();
         default2 = new StringUtilities("Hello, World!");
@@ -143,7 +145,7 @@ public class StringUtilitiesTest {
      * ewewqwdefa
      */
     @Test
-    public void testCaps(){
+    public void testCaps() {
         StringUtilities s = new StringUtilities("WAKE UP !!");
         assertTrue(s.isAllUpper());
     }

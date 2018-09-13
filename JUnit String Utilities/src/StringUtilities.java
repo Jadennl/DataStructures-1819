@@ -71,9 +71,15 @@ public class StringUtilities
     public String reverse(int from, int to)
     {
         string.length();
-        if (from < 0 || from >= string.length() || to < 0 || to >= string.length() ) throw new IllegalArgumentException();
+        if (from < 0 || from >= string.length() ||
+                to < 0 || to >= string.length() )
+        {
+            throw new IllegalArgumentException();
+        }
+        
         StringBuilder ans = new StringBuilder();
-        for (int i = to - 1; i >= from; i--) {
+        for (int i = to - 1; i >= from; i--)
+        {
             ans.append(string.charAt(i));
         }
         return ans.toString();
@@ -106,8 +112,11 @@ public class StringUtilities
      */
     public boolean containsNumbers()
     {
-        for (char c : string.toCharArray()){
-            if (Character.isDigit(c)) return true;
+        for ( char c : string.toCharArray()) {
+            if (Character.isDigit(c))
+            {
+                return true;
+            }
         }
         return false;
     }
@@ -123,14 +132,19 @@ public class StringUtilities
     public boolean isNumber()
     {
         int numPeriods = 0;
-        for (int i = 0; i < string.length(); i++){
+        for (int i = 0; i < string.length(); i++) {
             char c = string.charAt(i);
-            if (i == 0 && !Character.isDigit(c) && c != '-' && c != '.' ) return false;
-            else if (c == '.'){
-                numPeriods++;
-                if (numPeriods > 1)return false;
+            if (i == 0 && !Character.isDigit(c)
+                    && c != '-' && c != '.' )
+            {
+                return false;
             }
-            else if ( !Character.isDigit(c) )return false;
+            else if ( c == '.' )
+            {
+                numPeriods++;
+                if (numPeriods > 1) { return false; }
+            }
+            else if ( !Character.isDigit(c) ) { return false; }
         }
         return true;
     }
@@ -145,8 +159,8 @@ public class StringUtilities
     {
         int consec = 0;
         char prev = '\u0000';
-        for (char c : string.toCharArray()){
-            if ( c == prev ) consec++;
+        for (char c : string.toCharArray()) {
+            if ( c == prev ) { consec++; }
             prev = c;
         }
         return consec;
@@ -160,10 +174,9 @@ public class StringUtilities
      */
     public int numMatches( char c )
     {
-        
         int match = 0;
-        for ( char ch : string.toCharArray()){
-            if ( ch == c ) match++;
+        for ( char ch : string.toCharArray()) {
+            if ( ch == c ) { match++; }
         }
         return match;
     }
@@ -177,8 +190,8 @@ public class StringUtilities
     public int numMatches( String other )
     {
         int match = 0;
-        for (int i = 0; i < string.length() - other.length() + 1; i ++ ){
-            if ( string.substring(i, i + other.length()).equals(other) ){
+        for (int i = 0; i < string.length() - other.length() + 1; i ++ ) {
+            if ( string.substring(i, i + other.length()).equals(other) ) {
                 match++;
                 i += other.length() - 1;
             }
