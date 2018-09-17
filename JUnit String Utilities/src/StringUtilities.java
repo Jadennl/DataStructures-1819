@@ -1,5 +1,3 @@
-package src;
-
 /**
  * A class that performs simple calculates on a given stored String
  * @author MeermaBR and <Your Name>
@@ -71,8 +69,7 @@ public class StringUtilities
     public String reverse(int from, int to)
     {
         string.length();
-        if (from < 0 || from >= string.length() ||
-                to < 0 || to >= string.length() )
+        if (from < 0 || to > string.length() || to < from )
         {
             throw new IllegalArgumentException();
         }
@@ -132,21 +129,18 @@ public class StringUtilities
     public boolean isNumber()
     {
         int numPeriods = 0;
-        for (int i = 0; i < string.length(); i++) {
-            char c = string.charAt(i);
-            if (i == 0 && !Character.isDigit(c)
-                    && c != '-' && c != '.' )
-            {
-                return false;
-            }
-            else if ( c == '.' )
-            {
-                numPeriods++;
-                if (numPeriods > 1) { return false; }
-            }
-            else if ( !Character.isDigit(c) ) { return false; }
+        int start = 0;
+        if ( string.charAt( 0 ) == '-' ) { start++; }
+        for ( int i = start; i < string.length(); i++ ) {
+           char c = string.charAt( i );
+           if ( c == '.') {
+               numPeriods++;
+               if ( numPeriods > 1 ) { return false; }
+           }
+           else if ( !Character.isDigit( c )) { return false; }
         }
-        return true;
+        
+        return containsNumbers();
     }
 
     /**

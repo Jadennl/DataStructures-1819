@@ -1,6 +1,3 @@
-package src;
-
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -115,6 +112,17 @@ public class StringUtilitiesTest {
         assertEquals("", default2.reverse(0, 0));
     }
     
+    @Test
+    public void testReverseSingleChar() {
+        StringUtilities s = new StringUtilities( "f" );
+        assertEquals( "f", s.reverse(0, 1) );
+    }
+    
+    @Test
+    public void testReverseSameValues() {
+        assertEquals( "", default2.reverse(3, 3) );
+    }
+    
     /**
      * weewqrqerqer
      */
@@ -214,8 +222,8 @@ public class StringUtilitiesTest {
      */
     @Test
     public void numMatchesString() {
-        StringUtilities s = new StringUtilities("ManManBoyManMan");
-        assertEquals(4, s.numMatches("Man"));
+        StringUtilities s = new StringUtilities("Haymarket");
+        assertEquals(1, s.numMatches("market"));
     }
     
     /**
@@ -242,5 +250,17 @@ public class StringUtilitiesTest {
     public void testIsNumberWithDate() {
         StringUtilities s = new StringUtilities("05.04.2003");
         assertFalse(s.isNumber());
+    }
+    
+    @Test
+    public void testIsNumberNegative() {
+        StringUtilities s = new StringUtilities( "-5990.6" );
+        assertTrue( s.isNumber() );
+    }
+    
+    @Test
+    public void testIsNumberFalse() {
+        StringUtilities s = new StringUtilities( "-." );
+        assertFalse( s.isNumber() );
     }
 }
