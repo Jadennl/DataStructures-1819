@@ -268,4 +268,12 @@ public class StringUtilitiesTest {
         StringUtilities s = new StringUtilities( "-." );
         assertFalse( s.isNumber() );
     }
+    
+    /**
+     * roef
+     */
+    @Test (expected = IllegalArgumentException.class)
+    public void reverseFail() {
+        default3.reverse(3, 0 );
+    }
 }
