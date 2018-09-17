@@ -50,7 +50,6 @@ public class StringUtilitiesTest {
      */
     @Test(expected = NullPointerException.class)
     public void testReverseWithNull() {
-        assertNull(default1.toString());
         default1.reverse();
     }
     
@@ -222,8 +221,8 @@ public class StringUtilitiesTest {
      */
     @Test
     public void numMatchesString() {
-        StringUtilities s = new StringUtilities("Haymarket");
-        assertEquals(1, s.numMatches("market"));
+        StringUtilities s = new StringUtilities("Catharpin");
+        assertEquals(1, s.numMatches("harpin"));
     }
     
     /**
@@ -252,12 +251,18 @@ public class StringUtilitiesTest {
         assertFalse(s.isNumber());
     }
     
+    /**
+     * gggg
+     */
     @Test
     public void testIsNumberNegative() {
         StringUtilities s = new StringUtilities( "-5990.6" );
         assertTrue( s.isNumber() );
     }
     
+    /**
+     * ddde
+     */
     @Test
     public void testIsNumberFalse() {
         StringUtilities s = new StringUtilities( "-." );

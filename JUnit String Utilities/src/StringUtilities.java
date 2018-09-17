@@ -126,18 +126,22 @@ public class StringUtilities
      * @return True if the entire string is a number
      * @throws NullPointerException if the original String is null
      */
-    public boolean isNumber()
-    {
+    public boolean isNumber() {
         int numPeriods = 0;
         int start = 0;
-        if ( string.charAt( 0 ) == '-' ) { start++; }
+        if ( string.charAt( 0 ) == '-' ) {
+            start++;
+        }
         for ( int i = start; i < string.length(); i++ ) {
-           char c = string.charAt( i );
-           if ( c == '.') {
-               numPeriods++;
-               if ( numPeriods > 1 ) { return false; }
-           }
-           else if ( !Character.isDigit( c )) { return false; }
+            char c = string.charAt( i );
+            if ( c == '.' ) {
+                numPeriods++;
+                if ( numPeriods > 1 ) {
+                    return false;
+                }
+            } else if ( !Character.isDigit( c ) ) {
+                return false;
+            }
         }
         
         return containsNumbers();
