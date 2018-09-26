@@ -50,6 +50,7 @@ public class StringUtilitiesTest {
      */
     @Test(expected = NullPointerException.class)
     public void testReverseWithNull() {
+        assertNull( default1.toString() );
         default1.reverse();
     }
     
@@ -111,12 +112,18 @@ public class StringUtilitiesTest {
         assertEquals("", default2.reverse(0, 0));
     }
     
+    /**
+     * frfr
+     */
     @Test
     public void testReverseSingleChar() {
         StringUtilities s = new StringUtilities( "f" );
         assertEquals( "f", s.reverse(0, 1) );
     }
     
+    /**
+     * dfgg
+     */
     @Test
     public void testReverseSameValues() {
         assertEquals( "", default2.reverse(3, 3) );
@@ -274,6 +281,7 @@ public class StringUtilitiesTest {
      */
     @Test (expected = IllegalArgumentException.class)
     public void reverseFail() {
+        assertEquals( default2, default2 );
         default3.reverse(3, 0 );
     }
 }
