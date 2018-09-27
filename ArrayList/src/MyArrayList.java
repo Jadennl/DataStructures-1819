@@ -44,10 +44,10 @@ public class MyArrayList<E> {
     }
     
     /**
-     * Adds an object to the ArrayList.
-     * @param obj The object to be added to the ArrayList.
+     * Adds an element to the ArrayList.
+     * @param obj The element to be added to the ArrayList.
      *
-     * @return boolean if the object is successfully added.
+     * @return boolean if the element is successfully added.
      */
     public boolean add( E obj ) {
         size++;
@@ -60,7 +60,7 @@ public class MyArrayList<E> {
      * Adds an object to the ArrayList at a specified index and moves the
      * previous value to the next slot.
      * @param index The index where the object is added.
-     * @param obj The object to be added to the ArrayList.
+     * @param obj The element to be added to the ArrayList.
      * @throws IndexOutOfBoundsException if the index is not inside the
      * current list.
      */
@@ -70,7 +70,7 @@ public class MyArrayList<E> {
         else {
             size++;
             if ( size > maxCapacity ) {  ensureCapacity(size * 2 ); }
-            for ( int i = size - 2; i > index; i-- ) {
+            for ( int i = size - 2; i >= index; i-- ) {
                 values[i + 1]  = values[i];
             }
             values[index] = obj;
@@ -88,29 +88,84 @@ public class MyArrayList<E> {
         }
     }
     
-    public boolean remove( Object obj ) {
-        //TODO finish
+    /**
+     * Removes the specified element from the ArrayList.
+     * @param obj element to be removed.
+     *
+     * @return boolean whether the object was successfully removed.
+     */
+    public boolean remove( E obj ) {
+        for (Object delet : values) {
+            if (delet.equals( obj )) {
+            int i = indexOf( obj );
+            remove( i );
+            return true;
+            }
+        }
         return false;
     }
     
-    public Object remove( int index ) {
-        //TODO finish
-        return null;
+    /**
+     * Removes the element at the specified index.
+     * @param index the index of the element to be removed.
+     *
+     * @return the element that was removed.
+     */
+    public E remove( int index ) {
+        Object removed = values[index];
+        if (index == size - 1 ) {
+            Object o = values[size - 1];
+            values[size - 1] = null;
+            size--;
+            return (E)removed;
+        }
+        else {
+            for (int i = index; i < size - 1; i++ ) {
+                values[i] = values[i + 1];
+            }
+            size--;
+        }
+        return (E)removed;
     }
     
-    public Object get( int index ) {
+    /**
+     * Gets the element contained in the given index.
+     * @param index the index in which an element is contained in.
+     *
+     * @return the element inside the given index.
+     * @throws IndexOutOfBoundsException if the given index is greater than
+     * the size or less than 0.
+     */
+    public E get( int index ) {
         if ( index < 0 || index >= size() ) {
             throw new IndexOutOfBoundsException();
         } else {
-            return values[index];
+            return (E)values[index];
         }
     }
     
-    public void set( int index, Object obj ) {
-        //TODO finish
+    /**
+     * Sets the given index to the specified element.
+     * @param index the index to be replaced.
+     * @param obj the element to be set to the index.
+     * @throws IndexOutOfBoundsException if the given index is greater than
+     * the size or less than 0.
+     */
+    public void set( int index, E obj ) {
+        if ( index < 0 || index >= size() ) {
+            throw new IndexOutOfBoundsException();
+        }
+        values[index] = obj;
     }
     
-    public int indexOf( Object o ) {
+    /**
+     * Looks for the given element starting at the begining of the ArrayList.
+     * @param o the element to look for.
+     *
+     * @return integer equal to the location of the element. returns -1 if
+     * the element is not present.
+     */
+    public int indexOf( E o ) {
         for ( int i = 0; i < size; i++ ) {
             if ( values[i].equals( o ) ) {
                 return i;
@@ -119,7 +174,14 @@ public class MyArrayList<E> {
         return -1;
     }
     
-    public int lastIndexOf( Object o ) {
+    /**
+     * Looks for the given element starting at the end of the ArrayList.
+     * @param o the element to look for.
+     *
+     * @return integer equal to the location of the element. returns -1 if
+     * the element is not present.
+     */
+    public int lastIndexOf( E o ) {
         for ( int i = size - 1; i <= 0; i-- ) {
             if ( values[i].equals( o ) ) {
                 return i;
@@ -131,12 +193,12 @@ public class MyArrayList<E> {
     /**
      * Checks whether the ArrayList contains the given object.
      *
-     * @param obj Object to check is inside the object.
+     * @param obj Element to check is inside the list.
      *
      * @return boolean equal to whether the object is contained in the
      * ArrayList.
      */
-    public boolean contains( Object obj ) {
+    public boolean contains( E obj ) {
         for ( int i = 0; i < size; i++ ) {
             if ( obj == values[i] ) return true;
         }
@@ -161,6 +223,10 @@ public class MyArrayList<E> {
         return size <= 0;
     }
     
+    /**
+     * Ensures the background array can hold the given capacity.
+     * @param minCapacity the minimum amount of space the array should hold.
+     */
     public void ensureCapacity( int minCapacity ) {
         if ( minCapacity < 0 ) { minCapacity = Integer.MAX_VALUE; }
         if ( maxCapacity < minCapacity ) {
