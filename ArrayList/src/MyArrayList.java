@@ -95,11 +95,10 @@ public class MyArrayList<E> {
      * @return boolean whether the object was successfully removed.
      */
     public boolean remove( E obj ) {
-        for (Object delet : values) {
-            if (delet.equals( obj )) {
-            int i = indexOf( obj );
-            remove( i );
-            return true;
+        for (int i = 0; i < size; i++) {
+            if (values[i].equals( obj )) {
+                remove( i );
+                return true;
             }
         }
         return false;
@@ -112,6 +111,7 @@ public class MyArrayList<E> {
      * @return the element that was removed.
      */
     public E remove( int index ) {
+        if ( index > size ) { throw new IndexOutOfBoundsException(); }
         Object removed = values[index];
         if (index == size - 1 ) {
             Object o = values[size - 1];
@@ -124,8 +124,8 @@ public class MyArrayList<E> {
                 values[i] = values[i + 1];
             }
             size--;
+            return (E)removed;
         }
-        return (E)removed;
     }
     
     /**
@@ -153,8 +153,7 @@ public class MyArrayList<E> {
      */
     public void set( int index, E obj ) {
         if ( index < 0 || index >= size() ) {
-            throw new IndexOutOfBoundsException();
-        }
+            throw new IndexOutOfBoundsException(); }
         values[index] = obj;
     }
     
@@ -182,7 +181,7 @@ public class MyArrayList<E> {
      * the element is not present.
      */
     public int lastIndexOf( E o ) {
-        for ( int i = size - 1; i <= 0; i-- ) {
+        for ( int i = size - 1; i >= 0; i-- ) {
             if ( values[i].equals( o ) ) {
                 return i;
             }
@@ -235,6 +234,7 @@ public class MyArrayList<E> {
                 rmyArray[i] = values[i];
             }
             values = rmyArray;
+            size = rmyArray.length;
         }
     }
     

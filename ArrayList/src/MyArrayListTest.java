@@ -26,6 +26,10 @@ public class MyArrayListTest {
         stringList.add( "I'm" );
         stringList.add( "NOT" );
         stringList.add( "Babby" );
+        intList.add( 0 );
+        intList.add( 1 );
+        intList.add( 3 );
+        intList.add( 4 );
     }
     
     /**
@@ -36,7 +40,25 @@ public class MyArrayListTest {
         stringList = null;
         intList = null;
     }
-    
+
+    /**
+     * dd
+     */
+    @Test
+    public void testIndex() {
+        assertEquals(2, intList.indexOf(3) );
+        assertEquals(-1, intList.indexOf(10));
+    }
+
+    /**
+     * dd
+     */
+    @Test
+    public void testLastIndex() {
+        assertEquals(2, intList.lastIndexOf(3) );
+        assertEquals(-1, intList.lastIndexOf(10));
+    }
+
     /**
      * fgfgf
      */
@@ -69,6 +91,7 @@ public class MyArrayListTest {
     public void testRemoveObject() {
         assertTrue( stringList.remove( "NOT" ) );
         assertEquals( "I'm\tBabby\t", printAr( stringList ) );
+        assertFalse( stringList.remove("NOT") );
     }
     
     /**
@@ -85,17 +108,24 @@ public class MyArrayListTest {
     @Test
     public void testClear() {
         stringList.clear();
-        assertEquals( 0, stringList.size() );
+        assertTrue( stringList.isEmpty() );
     }
-    
+
+    /**
+     * e
+     */
+    @Test
+    public void testLastRemove() {
+        assertEquals("Babby", stringList.remove(stringList.size() - 1) );
+    }
+
     /**
      * weeeeee
      */
     @Test
     public void testAdd() {
-        assertEquals( 0, intList.size() );
         intList.add( 1 );
-        assertEquals( 1, intList.size() );
+        assertEquals( 5, intList.size() );
     }
     
     /**
@@ -103,23 +133,56 @@ public class MyArrayListTest {
      */
     @Test
     public void testAddIndex() {
-        intList.add( 0 );
-        intList.add( 1 );
-        intList.add( 3 );
-        intList.add( 4 );
         intList.add( 2, 2 );
         assertEquals( "0\t1\t2\t3\t4\t", printAr( intList ));
     }
-    
+
+    /**
+     * eee
+     */
     @Test
     public void testEnsureIndirectly() {
         MyArrayList<Character> grr = new MyArrayList<>(14);
         for ( char c : "ThisisnotME!ok?".toCharArray() ) {
             grr.add(c);
         }
-        assertEquals( 28, grr.size() );
+        assertEquals( 30, grr.size() );
     }
-    
+
+    /**
+     * w
+     */
+    @Test
+    public void testContains() {
+        assertTrue( stringList.contains("NOT") );
+        assertFalse( stringList.contains("im") );
+    }
+
+    /**
+     * ww
+     */
+    @Test (expected = IndexOutOfBoundsException.class)
+    public void failGet() {
+        intList.get(10);
+    }
+
+    /**
+     * ww
+     */
+    @Test (expected = IndexOutOfBoundsException.class)
+    public void failSet() {
+        intList.set( 12, 20);
+    }
+
+    /**
+     *eee
+     */
+    @Test
+    public void testSet() {
+        stringList.set(1, "a");
+        assertEquals("a", stringList.get(1) );
+    }
+
     /**
      * Returns the values in the list in a string
      * @param list ArrayList to be added
