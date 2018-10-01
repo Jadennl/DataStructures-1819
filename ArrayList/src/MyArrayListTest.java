@@ -3,6 +3,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -15,6 +16,7 @@ import static org.junit.Assert.*;
 public class MyArrayListTest {
     private MyArrayList<String> stringList;
     private MyArrayList<Integer> intList;
+    private MyArrayList<Character> charList;
     
     /**
      * j
@@ -30,6 +32,15 @@ public class MyArrayListTest {
         intList.add( 1 );
         intList.add( 3 );
         intList.add( 4 );
+        charList = new MyArrayList<>();
+        charList.add('a');
+        charList.add('b');
+        charList.add('c');
+        charList.add('d');
+        charList.add('e');
+        charList.add('f');
+        charList.add('g');
+        charList.add('h');
     }
     
     /**
@@ -99,7 +110,8 @@ public class MyArrayListTest {
      */
     @Test
     public void testDefaultArrayList() {
-        assertEquals( 3, stringList.size() );
+        assertEquals( 3,
+                stringList.size() );
     }
     
     /**
@@ -116,7 +128,8 @@ public class MyArrayListTest {
      */
     @Test
     public void testLastRemove() {
-        assertEquals("Babby", stringList.remove(stringList.size() - 1) );
+        assertEquals("Babby",
+                stringList.remove(stringList.size() - 1) );
     }
 
     /**
@@ -146,7 +159,7 @@ public class MyArrayListTest {
         for ( char c : "ThisisnotME!ok?".toCharArray() ) {
             grr.add(c);
         }
-        assertEquals( 30, grr.size() );
+        assertEquals( 15, grr.size() );
     }
 
     /**
@@ -184,20 +197,71 @@ public class MyArrayListTest {
         stringList.set(1, "a");
         assertEquals("a", stringList.get(1) );
     }
-
+    
+    /**
+     * ree
+     */
     @Test (expected = IndexOutOfBoundsException.class)
     public void failRemove() {
         assertEquals(4, intList.size());
         intList.remove(6);
     }
-
+    
+    /**
+     * eret
+     */
     @Test
     public void testRemoveRange() {
-
+        charList.removeRange( 2, 5 );
+        assertEquals( "[a, b, f, g, h]", charList.toString() );
     }
-
-    @Test
+    
+    /**
+     * wrrr
+     */
+    @Test (expected = IndexOutOfBoundsException.class)
     public void failRemoveRange() {
-
+        assertEquals( Character.toString( 'a' ),
+                charList.get(0).toString() );
+        intList.removeRange( 4, 2 );
+    }
+    
+    /**
+     * ss
+     */
+    @Test
+    public void testToArray() {
+        Object[] babby = {"I'm", "NOT", "Babby" };
+        assertArrayEquals( babby, stringList.toArray() );
+    }
+    
+    /**
+     * gr
+     */
+    @Test
+    public void testTrimToSize() {
+        MyArrayList<Character> grr = new MyArrayList<>(14);
+        for ( char c : "ThisisnotME!ok?".toCharArray() ) {
+            grr.add(c);
+        }
+        grr.trimToSize();
+        assertEquals( 15, grr.size() );
+    }
+    
+    /**
+     * et
+     */
+    @Test
+    public void testEquals() {
+        MyArrayList<Integer> clone;
+        clone = new MyArrayList<>(Arrays.asList(0, 1, 3, 4));
+        assertTrue(intList.equals(clone));
+        assertFalse(intList.equals( charList));
+    }
+    
+    @Test
+    public void testToStringEmptyArr() {
+        MyArrayList<Object> objects = new MyArrayList<>();
+        assertEquals("[]",  objects.toString());
     }
 }

@@ -66,7 +66,7 @@ public class MyArrayList<E> {
      * current list.
      */
     public void add( int index, E obj ) {
-        if ( index > size ) {
+        if ( index > size || index < 0 ) {
             throw new IndexOutOfBoundsException();
         }
         if ( index == size ) {
@@ -118,7 +118,7 @@ public class MyArrayList<E> {
      * @return the element that was removed.
      */
     public E remove( int index ) {
-        if ( index > size ) {
+        if ( index >= size || index < 0 ) {
             throw new IndexOutOfBoundsException();
         }
         E removed = (E) values[index];
@@ -145,7 +145,7 @@ public class MyArrayList<E> {
      * the size or less than 0.
      */
     public E get( int index ) {
-        if ( index < 0 || index >= size() ) {
+        if ( index < 0 || index >= size ) {
             throw new IndexOutOfBoundsException();
         }
         else {
@@ -243,11 +243,14 @@ public class MyArrayList<E> {
      * @return string format of ArrayList
      */
     public String toString() {
-        StringBuilder s = new StringBuilder("]");
-        for ( int i = 0; i < size-1; i++ ) {
-            s.insert( s.length()-1, values[i] + ", "  );
+        if ( size == 0 ) {
+            return "[]";
         }
-        s.insert(s.length()-1, values[size-1]);
+        StringBuilder s = new StringBuilder("]");
+        for ( int i = 0; i < size - 1; i++ ) {
+            s.insert( s.length( ) - 1, values[i] + ", "  );
+        }
+        s.insert(s.length() - 1, values[size - 1]);
         s.insert(0, "[");
         return s.toString();
     }
@@ -264,7 +267,7 @@ public class MyArrayList<E> {
                 rmyArray[i] = values[i];
             }
             values = rmyArray;
-            size = rmyArray.length;
+            maxCapacity = rmyArray.length;
         }
     }
     
@@ -279,19 +282,28 @@ public class MyArrayList<E> {
     }
 
     /**
+     * Removes all values starting at fromIndex, then ending before toIndex.
+     *
      * @param fromIndex index of first element to be removed.
      * @param toIndex index after last element to be removed.
-     * @throws IndexOutOfBoundsException if fromIndex or toIndex is out of range.
+     * @throws IndexOutOfBoundsException if fromIndex or
+     * toIndex is out of range.
      */
     public void removeRange( int fromIndex, int toIndex) {
         if ( fromIndex < 0 || toIndex > size || fromIndex > toIndex ) {
             throw new IndexOutOfBoundsException();
         }
-        for ( int i = toIndex - 1; i >= fromIndex; i++ ) {
-            remove( i );
+        int x = 0;
+        while ( x < toIndex - fromIndex ) {
+            remove(fromIndex);
+            x++;
         }
     }
-
+    
+    /**
+     * Returns the ArrayList as an array, in the order the elements belong in.
+     * @return Object array containing all elements inside the array.
+     */
     public Object[] toArray() {
         Object[] temp = new Object[size];
         for (int i = 0; i < size; i++ ) {
@@ -299,11 +311,20 @@ public class MyArrayList<E> {
         }
         return temp;
     }
-
+    
+    /**
+     * Trims the background array to the current size of the array.
+     */
     public void trimToSize() {
         values = toArray();
+        size = values.length;
     }
-
+    
+    /**
+     * Compares the given object to the ArrayList.
+     * @param o Object to compare
+     * @return if the object is equal
+     */
     public boolean equals( Object o) {
         if ( o == this ) {
             return true;
