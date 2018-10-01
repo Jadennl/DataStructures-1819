@@ -6,6 +6,7 @@ import java.util.Collection;
  *
  * @author Jaden Leonard
  * @version 08/31/18
+ * @param <E> element specified for the entire scope of the ArrayList.
  */
 public class MyArrayList<E> {
     private int size;
@@ -65,11 +66,17 @@ public class MyArrayList<E> {
      * current list.
      */
     public void add( int index, E obj ) {
-        if ( index > size ) { throw new IndexOutOfBoundsException(); }
-        if ( index == size ) { add( obj ); }
+        if ( index > size ) {
+            throw new IndexOutOfBoundsException();
+        }
+        if ( index == size ) {
+            add( obj );
+        }
         else {
             size++;
-            if ( size > maxCapacity ) {  ensureCapacity(size * 2 ); }
+            if ( size > maxCapacity ) {
+                ensureCapacity(size * 2 );
+            }
             for ( int i = size - 2; i >= index; i-- ) {
                 values[i + 1]  = values[i];
             }
@@ -111,20 +118,21 @@ public class MyArrayList<E> {
      * @return the element that was removed.
      */
     public E remove( int index ) {
-        if ( index > size ) { throw new IndexOutOfBoundsException(); }
-        Object removed = values[index];
+        if ( index > size ) {
+            throw new IndexOutOfBoundsException();
+        }
+        E removed = (E) values[index];
         if (index == size - 1 ) {
-            Object o = values[size - 1];
             values[size - 1] = null;
             size--;
-            return (E)removed;
+            return removed;
         }
         else {
             for (int i = index; i < size - 1; i++ ) {
                 values[i] = values[i + 1];
             }
             size--;
-            return (E)removed;
+            return removed;
         }
     }
     
@@ -139,8 +147,10 @@ public class MyArrayList<E> {
     public E get( int index ) {
         if ( index < 0 || index >= size() ) {
             throw new IndexOutOfBoundsException();
-        } else {
-            return (E)values[index];
+        }
+        else {
+            E get = (E) values[index];
+            return get;
         }
     }
     
@@ -149,12 +159,16 @@ public class MyArrayList<E> {
      * @param index the index to be replaced.
      * @param obj the element to be set to the index.
      * @throws IndexOutOfBoundsException if the given index is greater than
+     * @return the element previously at the specified index.
      * the size or less than 0.
      */
-    public void set( int index, E obj ) {
-        if ( index < 0 || index >= size() ) {
-            throw new IndexOutOfBoundsException(); }
+    public E set( int index, E obj ) {
+        if ( index < 0 || index >= size ) {
+            throw new IndexOutOfBoundsException();
+        }
+        E old = (E) values[index];
         values[index] = obj;
+        return old;
     }
     
     /**
@@ -199,7 +213,9 @@ public class MyArrayList<E> {
      */
     public boolean contains( E obj ) {
         for ( int i = 0; i < size; i++ ) {
-            if ( obj == values[i] ) return true;
+            if ( obj == values[i] ) {
+                return true;
+            }
         }
         return false;
     }
@@ -221,7 +237,21 @@ public class MyArrayList<E> {
     public boolean isEmpty() {
         return size <= 0;
     }
-    
+
+    /**
+     * returns the Arraylist in a "[value1, value2,... valueN] format.
+     * @return string format of ArrayList
+     */
+    public String toString() {
+        StringBuilder s = new StringBuilder("]");
+        for ( int i = 0; i < size-1; i++ ) {
+            s.insert( s.length()-1, values[i] + ", "  );
+        }
+        s.insert(s.length()-1, values[size-1]);
+        s.insert(0, "[");
+        return s.toString();
+    }
+
     /**
      * Ensures the background array can hold the given capacity.
      * @param minCapacity the minimum amount of space the array should hold.
@@ -246,5 +276,50 @@ public class MyArrayList<E> {
             values[i] = null;
         }
         size = 0;
+    }
+
+    /**
+     * @param fromIndex index of first element to be removed.
+     * @param toIndex index after last element to be removed.
+     * @throws IndexOutOfBoundsException if fromIndex or toIndex is out of range.
+     */
+    public void removeRange( int fromIndex, int toIndex) {
+        if ( fromIndex < 0 || toIndex > size || fromIndex > toIndex ) {
+            throw new IndexOutOfBoundsException();
+        }
+        for ( int i = toIndex - 1; i >= fromIndex; i++ ) {
+            remove( i );
+        }
+    }
+
+    public Object[] toArray() {
+        Object[] temp = new Object[size];
+        for (int i = 0; i < size; i++ ) {
+            temp[i] = values[i];
+        }
+        return temp;
+    }
+
+    public void trimToSize() {
+        values = toArray();
+    }
+
+    public boolean equals( Object o) {
+        if ( o == this ) {
+            return true;
+        }
+        if ( ! (o instanceof MyArrayList ) ) {
+            return false;
+        }
+        MyArrayList other = (MyArrayList)o;
+        if ( size() == other.size() ) {
+            for (int i = 0; i < size; i++ ) {
+                if ( values[i] != other.values[i] ) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 }

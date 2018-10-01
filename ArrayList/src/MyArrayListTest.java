@@ -72,7 +72,7 @@ public class MyArrayListTest {
         primes.add(7);
         primes.add(11);
         MyArrayList<Integer> babby = new MyArrayList<>( primes );
-        assertEquals( "1\t2\t3\t5\t7\t11\t", printAr(babby) );
+        assertEquals( "[1, 2, 3, 5, 7, 11]", babby.toString() );
     }
     
     /**
@@ -80,17 +80,17 @@ public class MyArrayListTest {
      */
     @Test
     public void testRemoveIndex() {
-        assertEquals( "NOT", stringList.remove( 1 ) );
-        assertEquals( "I'm\tBabby\t", printAr( stringList ) );
+        assertEquals("NOT", stringList.remove(1));
+        assertEquals("[I'm, Babby]", stringList.toString());
     }
-    
+
     /**
      * wewer
      */
     @Test
     public void testRemoveObject() {
         assertTrue( stringList.remove( "NOT" ) );
-        assertEquals( "I'm\tBabby\t", printAr( stringList ) );
+        assertEquals( "[I'm, Babby]", stringList.toString() );
         assertFalse( stringList.remove("NOT") );
     }
     
@@ -134,7 +134,7 @@ public class MyArrayListTest {
     @Test
     public void testAddIndex() {
         intList.add( 2, 2 );
-        assertEquals( "0\t1\t2\t3\t4\t", printAr( intList ));
+        assertEquals( "[0, 1, 2, 3, 4]", intList.toString() );
     }
 
     /**
@@ -163,6 +163,7 @@ public class MyArrayListTest {
      */
     @Test (expected = IndexOutOfBoundsException.class)
     public void failGet() {
+        assertFalse(intList.isEmpty());
         intList.get(10);
     }
 
@@ -171,6 +172,7 @@ public class MyArrayListTest {
      */
     @Test (expected = IndexOutOfBoundsException.class)
     public void failSet() {
+        assertFalse(intList.isEmpty());
         intList.set( 12, 20);
     }
 
@@ -183,17 +185,19 @@ public class MyArrayListTest {
         assertEquals("a", stringList.get(1) );
     }
 
-    /**
-     * Returns the values in the list in a string
-     * @param list ArrayList to be added
-     *
-     * @return string of values inside the ArrayList
-     */
-    private String printAr(MyArrayList list) {
-        StringBuilder s = new StringBuilder( "" );
-        for ( int i = 0; i < list.size(); i++ ) {
-            s.append( list.get( i ) + "\t" );
-        }
-        return s.toString();
+    @Test (expected = IndexOutOfBoundsException.class)
+    public void failRemove() {
+        assertEquals(4, intList.size());
+        intList.remove(6);
+    }
+
+    @Test
+    public void testRemoveRange() {
+
+    }
+
+    @Test
+    public void failRemoveRange() {
+
     }
 }
