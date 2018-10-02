@@ -258,10 +258,24 @@ public class MyArrayListTest {
         assertTrue(intList.equals(clone));
         assertFalse(intList.equals( charList));
     }
-    
+
+    /**
+     * wew
+     */
     @Test
     public void testToStringEmptyArr() {
         MyArrayList<Object> objects = new MyArrayList<>();
         assertEquals("[]",  objects.toString());
+    }
+
+    /**
+     * ere
+     */
+    @Test
+    public void testTrimAdd() {
+        charList.add('i');
+        charList.trimToSize();
+        charList.add('j');
+        assertEquals("[a, b, c, d, e, f, g, h, i, j]", charList.toString());
     }
 }

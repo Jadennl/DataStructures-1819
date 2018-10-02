@@ -318,6 +318,7 @@ public class MyArrayList<E> {
     public void trimToSize() {
         values = toArray();
         size = values.length;
+        maxCapacity = size;
     }
     
     /**
