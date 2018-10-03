@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/JUnit String Utilities/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ArrayList/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/LinkedList/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
