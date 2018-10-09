@@ -25,7 +25,8 @@ public class MyLinkedList<E> {
      * @param c The collection to be added.
      */
     public MyLinkedList( Collection<E> c ) {
-        //TODO: Finish
+        size = c.size();
+        addAll(c);
     }
     
     private Node toEnd(Node current) {
@@ -50,6 +51,34 @@ public class MyLinkedList<E> {
             toEnd( head ).next = new Node( e );
         }
         return true;
+    }
+    
+    public void addAll( Collection<E> c ) {
+        for ( E e: c) {
+            add( e );
+        }
+    }
+    
+    /**
+     * Gets the element contained in the given index.
+     *
+     * @param index the index to go to.
+     *
+     * @return element in said index.
+     * @throws IndexOutOfBoundsException when 0 > index > size.
+     */
+    public E get(int index) {
+        if ( index < 0 || index > size ) {
+            throw new IndexOutOfBoundsException();
+        }
+        return (E) get(index, head).data;
+    }
+    
+    private Node get(int index, Node n) {
+        if (index > 0 ) {
+            return get( index - 1, n.next );
+        }
+        return n;
     }
     
     class Node<E> {

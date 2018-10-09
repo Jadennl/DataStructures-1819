@@ -7,8 +7,9 @@
       <sourceFolder url="file://$MODULE_DIR$/JUnit String Utilities/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ArrayList/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/LinkedList/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Scanner/src" isTestSource="false" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="10" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library" scope="TEST">
       <library name="JUnit4">
