@@ -7,8 +7,7 @@ public class ScanTesting {
     public static void main(String[] args) {
         Scanner fileRead = null;
         try {
-            File f = new File("C:\\Users\\jnleo\\DataStructures-1819\\Scanner" +
-                    "\\src\\Food FACTS.txt");
+            File f = new File("Scanner/Food FACTS.txt");
             fileRead = new Scanner( f );
             String s = bestFood( fileRead );
             System.out.println( s );
@@ -28,19 +27,19 @@ public class ScanTesting {
         int timesEaten = 0;
         double highestRating = Double.MIN_VALUE;
         String bestFood = "";
-        String current;
         while ( s.hasNext() ) {
-            current = s.nextLine();
+            StringBuilder current = new StringBuilder(s.next());
+            while (s.hasNextInt() == false ) { current.append(" " + s.next()); }
             int eat = s.nextInt();
             total += eat;
             double rating = s.nextDouble();
             if ( rating > highestRating) {
-                bestFood = current;
+                bestFood = current.toString();
                 timesEaten = eat;
                 highestRating = rating;
             }
         }
-        double percent = (double) timesEaten / total;
+        double percent = (double) timesEaten / total * 100;
         return "You like " + bestFood + " the most. You ate it " + percent +
                 "% of the time.";
     }
