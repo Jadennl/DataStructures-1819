@@ -1,0 +1,33 @@
+Noodles
+20
+1.2
+Jerk Chicken
+50
+9.8
+Sandwich
+20
+3.0
+Glue
+5
+0.3
+Shavings
+3
+0.2
+Gasoline
+2
+0.5
+Dirt
+3
+0.4
+Sand
+1
+2
+Mercury
+10
+8.2
+Sharpie Inhalant
+4
+10
+Couch
+6
+5
