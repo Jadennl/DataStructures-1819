@@ -9,8 +9,7 @@ public class ScanTesting {
         try {
             File f = new File("Scanner/Food FACTS.txt");
             fileRead = new Scanner( f );
-            String s = bestFood( fileRead );
-            System.out.println( s );
+            bestFood( fileRead );
         }
         catch ( FileNotFoundException e) {
         
@@ -22,14 +21,17 @@ public class ScanTesting {
         }
     }
     
-    public static String bestFood(Scanner s) {
+    public static void bestFood(Scanner s) {
         int total = 0;
         int timesEaten = 0;
         double highestRating = Double.MIN_VALUE;
         String bestFood = "";
         while ( s.hasNext() ) {
             StringBuilder current = new StringBuilder(s.next());
-            while (s.hasNextInt() == false ) { current.append(" " + s.next()); }
+            while ( !s.hasNextInt() )
+            {
+                current.append( " " ).append( s.next() );
+            }
             int eat = s.nextInt();
             total += eat;
             double rating = s.nextDouble();
@@ -40,7 +42,7 @@ public class ScanTesting {
             }
         }
         double percent = (double) timesEaten / total * 100;
-        return "You like " + bestFood + " the most. You ate it " + percent +
-                "% of the time.";
+        System.out.printf("You like %s the most. %nYou ate it %.3f%% of the " +
+                        "time.", bestFood, percent);
     }
 }
