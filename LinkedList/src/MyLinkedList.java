@@ -123,6 +123,10 @@ public class MyLinkedList<E> {
             size--;
             get(size -  2, head).next = null;
         }
+        else {
+            size--;
+            get( index - 1, head ).next = get( index, head ).next;
+        }
         return removed;
     }
     

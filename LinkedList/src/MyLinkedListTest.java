@@ -7,6 +7,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * YES !!!!
@@ -133,6 +134,34 @@ public class MyLinkedListTest {
     public void testIndex() {
         assertEquals(2, intList.indexOf(3) );
         assertEquals(-1, intList.indexOf(10));
+    }
+    
+    /**
+     * e
+     */
+    @Test
+    public void testLastRemove() {
+        assertEquals("Babby",
+                stringList.remove(stringList.size() - 1) );
+    }
+    
+    /**
+     * dffdg
+     */
+    @Test
+    public void testRemoveIndex() {
+        assertEquals("NOT", stringList.remove(1));
+        assertEquals("[I'm, Babby]", stringList.toString());
+    }
+    
+    /**
+     * wewer
+     */
+    @Test
+    public void testRemoveObject() {
+        assertTrue( stringList.remove( "NOT" ) );
+        assertEquals( "[I'm, Babby]", stringList.toString() );
+        assertFalse( stringList.remove("NOT") );
     }
     
 }
