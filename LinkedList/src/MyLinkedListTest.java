@@ -3,11 +3,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * YES !!!!
@@ -16,7 +15,7 @@ public class MyLinkedListTest {
     private MyLinkedList<Integer> intList;
     private MyLinkedList<String> stringList;
     private MyLinkedList<Character> charList;
-    
+
     /**
      * rt
      */
@@ -24,13 +23,13 @@ public class MyLinkedListTest {
     public void setUp() {
         stringList = new MyLinkedList<>();
         intList = new MyLinkedList<>();
-        stringList.add( "I'm" );
-        stringList.add( "NOT" );
-        stringList.add( "Babby" );
-        intList.add( 0 );
-        intList.add( 1 );
-        intList.add( 3 );
-        intList.add( 4 );
+        stringList.add("I'm");
+        stringList.add("NOT");
+        stringList.add("Babby");
+        intList.add(0);
+        intList.add(1);
+        intList.add(3);
+        intList.add(4);
         charList = new MyLinkedList<>();
         charList.add('a');
         charList.add('b');
@@ -41,7 +40,7 @@ public class MyLinkedListTest {
         charList.add('g');
         charList.add('h');
     }
-    
+
     /**
      * rr
      */
@@ -51,30 +50,30 @@ public class MyLinkedListTest {
         stringList = null;
         charList = null;
     }
-    
+
     /**
      * rrr
      */
     @Test
     public void testAdd() {
-        stringList.add( "I'M" );
-        stringList.add( "NOT" );
-        assertEquals("NOT",stringList.get(1));
+        stringList.add("I'M");
+        stringList.add("NOT");
+        assertEquals("NOT", stringList.get(1));
     }
-    
+
     /**
      * ddd
      */
     @Test
     public void testGetsPastOne() {
-        assertEquals( "a", charList.get( 0 ).toString() );
-        assertEquals( "b", charList.get( 1 ).toString() );
-        assertEquals( "c", charList.get( 2 ).toString() );
-        assertEquals( "d", charList.get( 3 ).toString() );
-        assertEquals( "h",
-                charList.get( charList.size() - 1 ).toString() );
+        assertEquals("a", charList.get(0).toString());
+        assertEquals("b", charList.get(1).toString());
+        assertEquals("c", charList.get(2).toString());
+        assertEquals("d", charList.get(3).toString());
+        assertEquals("h",
+                charList.get(charList.size() - 1).toString());
     }
-    
+
     /**
      * fgfgf
      */
@@ -87,64 +86,64 @@ public class MyLinkedListTest {
         primes.add(5);
         primes.add(7);
         primes.add(11);
-        MyLinkedList<Integer> babby = new MyLinkedList<>( primes );
-        assertEquals( "[1, 2, 3, 5, 7, 11]", babby.toString() );
+        MyLinkedList<Integer> babby = new MyLinkedList<>(primes);
+        assertEquals("[1, 2, 3, 5, 7, 11]", babby.toString());
     }
-    
+
     /**
      * dddd
      */
     @Test
     public void testAddIndex() {
-        intList.add( 2, 2 );
-        assertEquals( "[0, 1, 2, 3, 4]", intList.toString() );
+        intList.add(2, 2);
+        assertEquals("[0, 1, 2, 3, 4]", intList.toString());
     }
-    
+
     /**
      * ww
      */
-    @Test (expected = IndexOutOfBoundsException.class)
+    @Test(expected = IndexOutOfBoundsException.class)
     public void failGet() {
         assertFalse(intList.isEmpty());
         intList.get(10);
     }
-    
+
     /**
      * ww
      */
-    @Test (expected = IndexOutOfBoundsException.class)
+    @Test(expected = IndexOutOfBoundsException.class)
     public void failSet() {
         assertFalse(intList.isEmpty());
-        intList.set( 12, 20);
+        intList.set(12, 20);
     }
-    
+
     /**
-     *eee
+     * eee
      */
     @Test
     public void testSet() {
         stringList.set(1, "a");
-        assertEquals("a", stringList.get(1) );
+        assertEquals("a", stringList.get(1));
     }
-    
+
     /**
      * dd
      */
     @Test
     public void testIndex() {
-        assertEquals(2, intList.indexOf(3) );
+        assertEquals(2, intList.indexOf(3));
         assertEquals(-1, intList.indexOf(10));
     }
-    
+
     /**
      * e
      */
     @Test
     public void testLastRemove() {
         assertEquals("Babby",
-                stringList.remove(stringList.size() - 1) );
+                stringList.remove(stringList.size() - 1));
     }
-    
+
     /**
      * dffdg
      */
@@ -153,15 +152,91 @@ public class MyLinkedListTest {
         assertEquals("NOT", stringList.remove(1));
         assertEquals("[I'm, Babby]", stringList.toString());
     }
-    
+
     /**
      * wewer
      */
     @Test
     public void testRemoveObject() {
-        assertTrue( stringList.remove( "NOT" ) );
-        assertEquals( "[I'm, Babby]", stringList.toString() );
-        assertFalse( stringList.remove("NOT") );
+        assertTrue(stringList.remove("NOT"));
+        assertEquals("[I'm, Babby]", stringList.toString());
+        assertFalse(stringList.remove("NOT"));
     }
-    
+
+    /**
+     * def
+     */
+    @Test
+    public void testClear() {
+        stringList.clear();
+        assertTrue(stringList.isEmpty());
+    }
+
+
+    /**
+     * et
+     */
+    @Test
+    public void testEquals() {
+        MyLinkedList<Integer> clone;
+        clone = new MyLinkedList<>(Arrays.asList(0, 1, 3, 4));
+        assertTrue(intList.equals(clone));
+        assertFalse(intList.equals(charList));
+    }
+
+    /**
+     * wew
+     */
+    @Test
+    public void testToStringEmptyArr() {
+        MyLinkedList<Object> objects = new MyLinkedList<>();
+        assertEquals("[]", objects.toString());
+    }
+
+    /**
+     * w
+     */
+    @Test
+    public void testContains() {
+        assertTrue(stringList.contains("NOT"));
+        assertFalse(stringList.contains("im"));
+    }
+
+    /**
+     * ree
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void failRemove() {
+        assertEquals(4, intList.size());
+        intList.remove(6);
+    }
+
+    /**
+     * eret
+     */
+    @Test
+    public void testRemoveRange() {
+        charList.removeRange(2, 5);
+        assertEquals("[a, b, f, g, h]", charList.toString());
+    }
+
+    /**
+     * wrrr
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void failRemoveRange() {
+        assertEquals(Character.toString('a'),
+                charList.get(0).toString());
+        intList.removeRange(4, 2);
+    }
+
+    /**
+     * ss
+     */
+    @Test
+    public void testToArray() {
+        Object[] babby = {"I'm", "NOT", "Babby"};
+        assertArrayEquals(babby, stringList.toArray());
+    }
+
 }
