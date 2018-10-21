@@ -146,10 +146,10 @@ public class MyLinkedList<E> {
      *
      * @param index the index to go to.
      * @return element in said index.
-     * @throws IndexOutOfBoundsException when 0 > index > size.
+     * @throws IndexOutOfBoundsException when 0 > index >= size.
      */
     public E get(int index) {
-        if (index < 0 || index > size) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
         return (E) get(index, head).data;
@@ -159,10 +159,11 @@ public class MyLinkedList<E> {
      * Sets the given index to the specified element.
      *
      * @param index the index to be replaced.
-     * @param e     the element to be set to the index.
+     * @param e the element to be set to the index.
      * @return the element previously at the specified index.
      * the size or less than 0.
      * @throws IndexOutOfBoundsException if the given index is greater than
+     * or equal to the size or less than zero.
      */
     public E set(int index, E e) {
         if (index < 0 || index >= size) {
@@ -319,10 +320,11 @@ public class MyLinkedList<E> {
     }
 
     /**
-     * grabs node at given index
+     * Grabs node index ahead of given node.
+     * This will always start with head. 
      *
-     * @param index
-     * @param n
+     * @param index index to count down to
+     * @param n current node
      * @return node at index
      */
     private Node get(int index, Node n) {
