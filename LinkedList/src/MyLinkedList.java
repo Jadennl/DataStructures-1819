@@ -352,7 +352,6 @@ public class MyLinkedList<E> {
             this.data = data;
             this.next = next;
         }
-
         Node(E data) {
             this(data, null);
         }
