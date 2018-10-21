@@ -10,6 +10,9 @@ import static org.junit.Assert.*;
 
 /**
  * YES !!!!
+ *
+ * @author jnleo
+ * @version 10/20/18
  */
 public class MyLinkedListTest {
     private MyLinkedList<Integer> intList;
@@ -182,6 +185,11 @@ public class MyLinkedListTest {
         clone = new MyLinkedList<>(Arrays.asList(0, 1, 3, 4));
         assertTrue(intList.equals(clone));
         assertFalse(intList.equals(charList));
+        clone.set(2, 7);
+        assertFalse(intList.equals(clone));
+        clone = intList;
+        assertTrue(intList.equals(clone));
+        assertFalse(stringList.equals("g"));
     }
 
     /**
@@ -239,4 +247,49 @@ public class MyLinkedListTest {
         assertArrayEquals(babby, stringList.toArray());
     }
 
+    /**
+     * dd
+     */
+    @Test
+    public void testLastIndex() {
+        assertEquals(2, intList.lastIndexOf(3));
+        assertEquals(-1, intList.lastIndexOf(10));
+    }
+
+    /**
+     * fugo
+     */
+    @Test
+    public void removeOneItem() {
+        MyLinkedList<String> list = new MyLinkedList<>();
+        list.add("h");
+        assertEquals("h", list.remove(0));
+    }
+
+    /**
+     * fugo
+     */
+    @Test
+    public void removeAtZero() {
+        stringList.remove(0);
+        assertEquals("NOT", stringList.get(0));
+    }
+
+    /**
+     * fugo
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void failAdd() {
+        assertFalse(intList.isEmpty());
+        intList.add(9, 4);
+    }
+
+    /**
+     * fugo
+     */
+    @Test
+    public void addIndexSize() {
+        stringList.add(stringList.size(), "g");
+        assertEquals("g", stringList.get(stringList.size() - 1));
+    }
 }

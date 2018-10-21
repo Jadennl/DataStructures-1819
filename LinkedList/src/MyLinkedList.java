@@ -58,7 +58,8 @@ public class MyLinkedList<E> {
         size++;
         if (head == null) {
             head = new Node(e);
-        } else {
+        }
+        else {
             toEnd(head).next = new Node(e);
         }
         return true;
@@ -78,7 +79,8 @@ public class MyLinkedList<E> {
         }
         if (index == size) {
             add(e);
-        } else {
+        }
+        else {
             size++;
             Node prev = get(index - 1, head);
             Node old = get(index, head);
@@ -128,13 +130,16 @@ public class MyLinkedList<E> {
         if (index == 0 && size > 1) {
             head = head.next;
             size--;
-        } else if (index == 0) {
+        }
+        else if (index == 0) {
             size--;
             head = null;
-        } else if (index == size - 1) {
+        }
+        else if (index == size - 1) {
             size--;
             get(size - 2, head).next = null;
-        } else {
+        }
+        else {
             size--;
             get(index - 1, head).next = get(index, head).next;
         }
