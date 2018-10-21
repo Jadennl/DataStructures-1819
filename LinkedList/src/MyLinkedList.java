@@ -77,15 +77,19 @@ public class MyLinkedList<E> {
         if (index > size || index < 0) {
             throw new IndexOutOfBoundsException();
         }
-        if (index == size) {
+        else if (index == size) {
             add(e);
         }
-        else {
+        else if (index == 0) {
+            head = new Node(e, head);
             size++;
+        }
+        else {
             Node prev = get(index - 1, head);
             Node old = get(index, head);
-            Node n = new Node(e, old);
-            prev.next = n;
+            Node newNode = new Node(e, old);
+            prev.next = newNode;
+            size++;
         }
     }
 
@@ -338,21 +342,20 @@ public class MyLinkedList<E> {
         }
         return n;
     }
-
+    
     /**
-     * Class that stores a value and the node after it
-     *
-     * @param <E> object type to be stored
+     * Class that stores a value and node after
+     * @param <E>
      */
     class Node<E> {
-        E data;
-        Node next;
+        private E data;
+        private Node next;
 
-        Node(E data, Node next) {
+        private Node(E data, Node next) {
             this.data = data;
             this.next = next;
         }
-        Node(E data) {
+        private Node(E data) {
             this(data, null);
         }
     }

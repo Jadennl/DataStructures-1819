@@ -110,6 +110,15 @@ public class MyLinkedListTest {
         assertFalse(intList.isEmpty());
         intList.get(10);
     }
+    
+    /**
+     * ww
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void failGet2() {
+        assertFalse(intList.isEmpty());
+        intList.get(-1);
+    }
 
     /**
      * ww
@@ -118,6 +127,15 @@ public class MyLinkedListTest {
     public void failSet() {
         assertFalse(intList.isEmpty());
         intList.set(12, 20);
+    }
+    
+    /**
+     * ww
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void failSet2() {
+        assertFalse(intList.isEmpty());
+        intList.set(-1, 20);
     }
 
     /**
@@ -218,6 +236,15 @@ public class MyLinkedListTest {
         assertEquals(4, intList.size());
         intList.remove(6);
     }
+    
+    /**
+     * ree
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void failRemove2() {
+        assertEquals(4, intList.size());
+        intList.remove(-1);
+    }
 
     /**
      * eret
@@ -236,6 +263,26 @@ public class MyLinkedListTest {
         assertEquals(Character.toString('a'),
                 charList.get(0).toString());
         intList.removeRange(4, 2);
+    }
+    
+    /**
+     * wrrr
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void failRemoveRange2() {
+        assertEquals(Character.toString('a'),
+                charList.get(0).toString());
+        intList.removeRange(-1, 3);
+    }
+    
+    /**
+     * wrrr
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void failRemoveRange3() {
+        assertEquals(Character.toString('a'),
+                charList.get(0).toString());
+        intList.removeRange(1, 11);
     }
 
     /**
@@ -283,6 +330,15 @@ public class MyLinkedListTest {
         assertFalse(intList.isEmpty());
         intList.add(9, 4);
     }
+    
+    /**
+     * fugo
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void failAdd2() {
+        assertFalse(intList.isEmpty());
+        intList.add(-1, 4);
+    }
 
     /**
      * fugo
@@ -291,5 +347,17 @@ public class MyLinkedListTest {
     public void addIndexSize() {
         stringList.add(stringList.size(), "g");
         assertEquals("g", stringList.get(stringList.size() - 1));
+    }
+    
+    /**
+     * fugo
+     */
+    @Test
+    public void addRemoveAdd() {
+        charList.add( 0, 'x' );
+        assertEquals("x", charList.get(0).toString());
+        charList.add(charList.remove( 0 ));
+        assertEquals( "[a, b, c, d, e, f, g, h, x]",
+                charList.toString() );
     }
 }
