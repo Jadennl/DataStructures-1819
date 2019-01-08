@@ -46,11 +46,29 @@ public class FakeMinHeap {
             heap.set(slot, heap.get(slot/2));
             slot = slot/2;
         }
-        System.out.println(toString());
         heap.set(slot, check);
     }
     
-    private void reheapDown() { }
+    private void reheapDown() {
+        int slot = 1;
+        while (slot * 2 < heap.size() && slot * 2 + 1 < heap.size()) {
+            if ( heap.get( slot * 2 ) < heap.get( slot * 2 + 1 ) ) {
+                if ( heap.get( slot ) > heap.get( slot * 2 ) ) {
+                    heap.set( 0, heap.get( slot ) );
+                    heap.set( slot, heap.get( slot * 2 ) );
+                    heap.set( slot * 2, heap.get( 0 ) );
+                    slot *= 2;
+                }
+            } else {
+                if ( heap.get( slot ) > heap.get( slot * 2 + 1 ) ) {
+                    heap.set( 0, heap.get( slot ) );
+                    heap.set( slot, heap.get( slot * 2 + 1 ) );
+                    heap.set( slot * 2 + 1, heap.get( 0 ) );
+                    slot *= 2 + 1;
+                }
+            }
+        }
+    }
     
     
     
