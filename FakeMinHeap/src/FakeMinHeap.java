@@ -31,27 +31,35 @@ public class FakeMinHeap {
         
         Integer old = peek();
         
-        heap.set( 1, heap.remove( heap.size() - 1 ) );
-        reheapDown();
+        
+        if ( heap.size() > 2 ) {
+            heap.set(1, heap.remove(heap.size() - 1) );
+            reheapDown();
+        }
+        else {
+            heap.remove( 1 );
+        }
         
         return old;
     }
+    
+    
     //Min heap
     //Field: private List<Integer> heap
     private void reheapUp() {
         int slot = heap.size() - 1;
-        heap.set(0, heap.get(slot));
-        int check = heap.get(0);
-        while (slot > 1 && heap.get( slot / 2 ) > check  ) {
-            heap.set(slot, heap.get(slot/2));
-            slot = slot/2;
+        heap.set( 0, heap.get( slot ) );
+        int check = heap.get( 0 );
+        while ( slot > 1 && heap.get( slot / 2 ) > check ) {
+            heap.set( slot, heap.get( slot / 2 ) );
+            slot = slot / 2;
         }
-        heap.set(slot, check);
+        heap.set( slot, check );
     }
     
     private void reheapDown() {
         int slot = 1;
-        while (slot * 2 < heap.size() && slot * 2 + 1 < heap.size()) {
+        while ( slot * 2 < heap.size() && slot * 2 + 1 < heap.size() ) {
             if ( heap.get( slot * 2 ) < heap.get( slot * 2 + 1 ) ) {
                 if ( heap.get( slot ) > heap.get( slot * 2 ) ) {
                     heap.set( 0, heap.get( slot ) );
@@ -59,7 +67,8 @@ public class FakeMinHeap {
                     heap.set( slot * 2, heap.get( 0 ) );
                     slot *= 2;
                 }
-            } else {
+            }
+            else {
                 if ( heap.get( slot ) > heap.get( slot * 2 + 1 ) ) {
                     heap.set( 0, heap.get( slot ) );
                     heap.set( slot, heap.get( slot * 2 + 1 ) );
@@ -69,7 +78,6 @@ public class FakeMinHeap {
             }
         }
     }
-    
     
     
     public String toString() {
