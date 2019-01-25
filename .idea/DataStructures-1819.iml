@@ -12,6 +12,11 @@
       <sourceFolder url="file://$MODULE_DIR$/InSchoolComp/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/XmlReader/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/FakeMinHeap/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/CircularArray/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/FakeMinHeap" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/CircularArray" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/InSchoolComp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/LinkedList" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="10" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />

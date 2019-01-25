@@ -77,6 +77,11 @@ public class FakeMinHeap {
                 }
             }
         }
+        if ( size() == 2 && heap.get( slot ) >= heap.get( slot * 2 ) ) {
+            heap.set( 0, heap.get( slot ) );
+            heap.set( slot, heap.get( slot * 2 ) );
+            heap.set( slot * 2, heap.get( 0 ) );
+        }
     }
     
     

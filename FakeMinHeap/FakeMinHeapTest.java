@@ -60,4 +60,14 @@ public class FakeMinHeapTest {
         h3.remove();
         assertEquals( "[16, 20, 30]", h3.toString() );
     }
+    
+    @Test
+    public void testRemove4() {
+        FakeMinHeap h4 = new FakeMinHeap();
+        h4.add(1);
+        h4.add(3);
+        h4.add(5);
+        h4.remove();
+        assertEquals( "[3, 5]", h4.toString() );
+    }
 }
