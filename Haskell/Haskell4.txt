@@ -1,0 +1,47 @@
+Haskell Question Set 4 
+
+1) Write a function which given a list will return a new list of tuples, with the original values now matched with their equivalent slot number.
+	tup xs = zip [0..] xs
+
+2) Write a function which given a list will return a new list of tuples, with the original values now matched with their reversed slot location (n-slot#, where n is the length of the slot)
+	btup xs = zip [length xs, length xs - 1.. 1] xs
+
+3) Write a function which accepts one list of team names and generates every possible matchup of teams, including both home and away games. 
+	team xs = [(x,y) | x <- xs, y <- xs, x /= y]
+
+4)  Write a function that given two arrays pairs the arrays values with the second list backwards.
+	tgeth xs ys = zip xs (reverse ys
+
+5) Given a list of tuples which contain coordinates, return only the tuples which coordinates are within a distance of 5 from the origin (the distance formula on them and(0,0) is less than 5).
+	distOrg xy = sqrt ((x - 0)^2 + (y - 0)^2)
+     where x = fst xy
+           y = snd xy
+	closeOrg xys = [ xy | xy <- xys, (distOrg xy) < 5]
+
+6) Generate a list of tuples which contains the letters A-Z in the first part of the pair and their ascii values as the second part of the pair.  The ascii value of a pairing can only be found if you import Data.Char (ord)  then use the ord command on a letter.  So, ord 'A' = 65
+	import Data.Char
+	[(c, ord c) | c <- ['A'..'Z']]
+
+7) Given a list of potential colors (triples), return back a list of only real colors.  Colors have all three values in the range [0,255].
+	realColor rgbs = filter (\(r,g,b) -> (( r <= 255 && r >= 0 ) && ( g <= 255 && g >= 0 ) && ( b <= 255 && b >= 0 ))) rgbs
+
+8) Generate a list of all potential chess locations [(a,1), (a,2), (a,3), ...]  Chess columns are labeled a-h and chess rows are labeled 1-8.
+	[(r,c) | r <- ['a'..'h'], c <- [1..8]]
+
+9) Write a function that generates a list of all possible triangles in a given range x, y.  Three side lengths can form a triangle only if the sum of each pair of side lengths isgreater than the third side.
+	triBtwn x y = [(a,b,c) | a <- [x..y], b <- [x..y], c <- [x..y], a + b > c]
+
+10) Write a function that strips a list of tuples down only to its second values.  ie: [(a,b), (b,c), (e,f), (a,a)] -> [b, c, f, a]
+	strip xys = [snd xy | xy <- xys]
+
+11) Write a function which accepts a list and returns back a mapping of the list's unique values to the number of items that were in the list.  ie: [3, 3, 1, 4, 3, 5, 5, 2, 1] -> [(3,3), (1,2), (4, 1), (5,2)
+	unique xs = [
+
+12) Write a function which given a string will return a hashcode of that string computed by summing each ascii value in the string multiplied by 31^(n-i+1) value, where n is the length of the string and i is the slot number.  For instance:  "dog" -> 'd' * 31^2 + 'o' * 31^1 + 'g' * 31 ^ 0.  To get the ascii value of any char, you will need to add: import Data.Char (ord) to the top of your file, then the function ord x will calculate the ascii value of any char.  ord 'A'   = 65 for instance.  I recommend you split this into separate functions.
+	import Data.Char
+	hash (c:x) = ( ord c * (31 ^ ( length x ) ) ) + hashString x
+	hash [] = 0
+
+
+13) Write a function which given a list of strings will return a new list of tuples, mapping the hashcode of the string to its actual value.
+	hashpair xs = [(x, hash x) | x <- xs]

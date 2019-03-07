@@ -1,0 +1,48 @@
+Haskell Question Set 2
+1) Find the length of your name.
+  5
+
+2) Check if a word is a palindrome with minimum effort (basically zero effort).
+  "Hello" == reverse "Hello"
+
+3) Write a function which given any word will calculate the second half of the word.  ie:  computer -> uter.  This is tricky, because / returns decimals now.  Use the `quot` function to do integer division.
+  sHalf x = drop ((length x) `quot` 2) x
+
+4) Write a function which given any word will calculate the first half of the word.  ie: computer -> comp.
+  fHalf x = take ((length x) `quot` 2) x
+
+5) Write a function which given two separate lists returns the largest value of the two lists.
+  tMax xs ys = maximum ( xs ++ ys )
+
+6) Write a function which takes a list and two parameters and returns true if both of those parameters are in the given list.
+  bothIn xs t1 t2 = (elem t1 xs) && (elem t2 xs)
+
+7) Calculate how many symbols are from 'A' (uppercase A)to lowercase 'z' (more than52).
+  58
+
+8) Calculate all the numbers from 100 to 0 by -1s.
+  [100, 99..0]
+
+9) Calculate all the letters from 'A' to 'Z' but skip every other letter.
+	['A', 'C'..'Z']
+
+10) Without using any numeric calculations (division or multiplication), calculate the number of nickels it would take until you had one million dollars.
+	length [5, 10.. 1000000]
+
+11) Grab the first 100 even numbers starting from 0
+	[0, 2.. 100]
+
+12) Write a function that given a starting value and a number x returns the first x even numbers starting from the starting value.  ie: firstXEven 52 4 -> [52, 54, 56, 58].
+	firstXEven x l = take l [x, x+2..] 
+
+13) Write a function that given a String as a cryptography key and a number for the number, x, of items you want from the key will return the first x items in the repeated key.  ie:  cryptKey "abc" 8 -> "abcabcab"
+
+	cryptKey key num = take num (cycle key)
+14) Write a function that given a String and a number will return that many copies of the String.  ie: copyString "meow" 5 -> "meowmeowmeowmeowmeow"
+	copyString word num = concat (replicate num word)
+
+15) Write a function that given a String and a number will return that many copies of the String but separated by a space.  ie: copyString "meow" 5 -> "meow meow meow meow meow"
+	copyString2 word num = init (concat (map (++ " ") (replicate num word)))
+	
+16) Why does every if need an else?
+	There is always a solution to each problem in haskell.

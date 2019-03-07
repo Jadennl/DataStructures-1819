@@ -1,0 +1,57 @@
+1.What is the type of the expression 1+1? 
+Explain this as if you are trying to explain it to an AP student.
+	Num a => a -> a -> a
+	When given 2 numbers (doesnt matter if its an integer or double) it will return a number.
+
+2.What is the type of max?  Explain each part of it as if you are trying to explain it to an AP student.
+	Ord a => a -> a -> a
+	An ord is any primitive or object that can be compared using a logical function. When given two of those ords, the greater one will be returned.
+
+3.If you were to write a function to calculate the average of two integers, how would you define the type of the function?
+	avg :: Integral a => a -> a -> a 
+
+4.If you were to write a function to find the mode of a list of anything that uses the = sign, how would you define the type of the function?
+	mode :: Eq a => [a] -> a
+
+5.Explain the difference between Int, Integer, Integral in words that an AP student could understand.
+	Int: literally an int in java
+	Integer: An int that does not overflow
+	Integral: Interface for Int and Integer 
+
+6.You want to write a function that finds the second largest piece of information in a list -but you don't know how to write the Type of the function.  Explain how you could figure out the Type of the function by using other things.
+	To create this fuction you would need to compare information using (<, > ,>=, <=, etc). This means it will have to be a comparable type/a type that can be sorted.
+
+7.Write a function that calculates the area of a trapezoid.  Allow very precise decimals to be sent in.
+	aTrap :: (Fractional a) => a -> a -> a -> a
+	aTrap a b h = ((a + b) / 2) * h
+
+8.Write your own version of the tail function on a list, make sure to define the type.
+	tail' :: [a] -> [a]
+	tail' [] = error "Empty list"
+	tail' (_:xs) = xs
+
+9.Write a pythagorean theorem function which returns true if a^2 + b^2 equals c^2.  Limit a, b, and c to integers.
+	pythag :: (Integral a) => a -> a -> a -> Bool
+	pythag a b c = a^2 + b^2 == c^2
+
+10.Write an inAscendingOrder function which will work on any list as long as the list items themselves are comparable with the > or < sign, and returns true if they are in ascending order.
+	isAscendingOrder :: (Ord a) => [a] -> Bool
+	isAscendingOrder [] = True
+	isAscendingOrder [x] = True
+	isAscendingOrder (x:xs) = isAscendingOrder xs && [x] < xs 
+
+11.Write a function that takes in two numbers that are currently stored in strings, then returns the values subtracted.  Ex:  subt "342" "330" -> 12
+	subt :: [Char] -> [Char] -> Integer
+	subt c1 c2 = (read c1 :: Integer) - (read c2 :: Integer)
+
+
+12.Write a function that finds the average (as a decimal), with minimal precision, of a list of numbers.
+	badAvg :: (Num a) => [a] -> Floating
+	badAvg xs = (sum xs) / (length xs)
+
+13.Write a function that given a list of Strings, where each String is really a number like "3.2" or "5", converts them to a list of numbers.
+	xsToNums :: [Char] -> [Double]
+	xsToNums xs = [read x :: Double | x <- xs]
+
+14.Explain how an AP student is like a toddler.
+	They both fuss and they dont know what they are doing.
