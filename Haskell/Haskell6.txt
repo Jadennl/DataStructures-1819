@@ -1,0 +1,96 @@
+1) Write a function which accepts a String.  If the String is your first name, return "First Name", if is it your second name, return "Middle Name", if it is your last name, return "Last name", if none of the above, return "Stranger Danger!".  However, useno if statements.
+	giveName :: String -> String
+	giveName xs
+	    | xs == "Jaden"   = "First Name"
+	    | xs == "Nikkos"  = "Middle Name"
+	    | xs == "Leonard" = "Last Name"
+	    | otherwise       = "Stranger Danger!"
+
+2) Write a function which accepts a tuple of three integers and returns "White", "Black", "Red", "Green", "Blue", "A shade of Gray", "Not a color", or "(#,#,#)" if it is a color.  At maximum use two if statements.  ex: colorName (255,255,255) -> "White"colorName (3,3,3) -> "A shade of Gray"colorName (300, 200, 500) -> "Not a color"
+	whatColor :: (Integer,Integer,Integer) -> String
+	whatColor (r,g,b)
+    	| r == 255 && g == r   && b == r   = "White"
+    	| r == 0   && g == r   && b == r   = "Black"
+    	| r == 255 && g == 0   && b == g   = "Red"
+    	| r == 0   && g == 255 && b == r   = "Green"
+    	| r == 0   && g == r   && b == 255 = "Blue"
+    	| r == g   && g == b               = "A shade of Gray"
+    	| bad r    || bad g    || bad b    = "Not a color"
+    	| otherwise                        = show (r,g,b)
+    	where bad a = a > 255 || a < 0
+
+3) Write a function which accepts an integer and prints "It is decidedly so" if the int is 1, "My sources say no" if 2, or "Ask again later" if 3.  If a number other than 1,2,or 3 were to come in, what would happen?
+	bad8Ball :: Int -> String    
+	bad8Ball x
+    	| x == 1 = "It is decidedly so"
+    	| x == 2 = "My sources say no"
+    	| x == 3 = "Ask again later"
+		An exception would be thrown since there is not a catch-all pattern.
+
+4) Write a function that would represent a menu of choices someone might make.  If they choose option #1, return "Deposit".  If they choose option #2, return "Withdraw".  If they choose option #3, return "Log out".  If they choose any other option, restart the function.  Write the code -but identify what is wrong with the logic.
+	menu :: Int -> String
+	menu x 
+    	| x == 1 = "Deposit"
+    	| x == 2 = "Withdraw"
+    	| x == 3 = "Log out"
+	The function does not tell you what the options are, and the result is the name of the option.
+
+
+5) Write a function that is used to find the average of the numbers in a list.  However, generate anerror if the list has no numbers in it.
+	average :: (Fractional a) => [a] -> a
+	average []   = error "Empty List"
+	average nums = (sum nums) / (fromIntegral $ length nums)
+
+
+6) Write a function that given a list returns the first three elements in the list.  If the list doesn't have three elements, return only the part of the list that does exist.  If the list is empty, this would return an empty list.  However, use no if statements.
+	firstThree :: [a] -> [a]
+	firstThree xs
+    	| len <  3   = xs
+    	| otherwise  = take 3 xs
+    	where len    = length xs
+
+7) Write your own tail function, call it tail.  It should produce an error if it is empty.
+	tail' :: [a] -> [a]
+	tail' [] = error "Empty List"
+	tail' (x:xs) = xs
+
+8) Write your own power function which takes an int and raises it to another int.  However, don't use any built in function other than *.
+	pow :: (Integral a) => a -> a -> a
+	pow a 0 = 1 
+	pow a 1 = a
+	pow a x = a * pow a (x-1)
+
+9) Rewrite the function from an earlier set that determines what grade you have in a course (90-100 = A, 80-90 = B, etcetera).  If the grade is out of bounds generate "Liar" as a result.
+	grade2 :: Integer -> [Char]
+	grade2 g
+    	| g < 0     = "Liar"
+    	| g <= 60   = "F"
+    	| g <  70   = "D"
+    	| g <  80   = "C"
+    	| g <  90   = "B"
+    	| g <  100  = "A"
+    	| otherwise = "Liar"
+
+10) Write a function that given two Strings returns "" if either String length is 0, otherwise it returns the last char of each String attached to each other attached to the result of calling the function again on every other letter.  Use recursion.ie:  fun "" "moo" -> ""fun "cow" "moo" ->"wo" + "oo" + "cm" -> "wooocm"
+	weird6 :: [Char] -> [Char] -> [Char]
+	weird6 xs ys
+    	| length xs == 0 || length ys == 0 = ""
+    	| otherwise   
+
+11) Write a function that determines if two coordinates ((x,y) tuples) are "Very close" to each other (less than 1 distance), "Close" (less than 5 distance), "Somewhat near" (less than 100 distance), or "Far away" (more than 100 distance).  Don't write a separate distance function, instead, use one of the options to build it in the function you are writing without writing the distance formula more than once.ie: howFar (3,3) (482,300) -> "Far away" 
+	distance2 :: (Ord a, Floating a) => (a,a) -> (a,a) -> String
+	distance2 (x1, y1) (x2, y2)
+   		| dist < 1    = "Very Close"
+   		| dist < 5    = "Close"
+   		| dist < 100  = "Somewhat near"
+   		| otherwise   = "Far away"
+   		where dist    = sqrt ((x2 - x1)^2 + (y2 - y1)^2)
+
+12) Write a function, without using where, to generate the initials after being given a first name and a list name.  The readings has this as a where example.ie:  initials "Thomas" "Jefferson"  -> "T.J."
+	initials :: String -> String -> String
+	initials fn ln = (head fn):'.':(head ln):'.':[]
+
+13) Rewrite a question from a previous set that found all triangles between two given side lengths, ie: find all triangles from 1-3 in side lengths would check if (1,1,1), (1,1,2), (1,1,3), (1,2,1)...  This time, use a where to determine if the values themselves are a triangle.
+	triBtwn :: (Ord a, Integral a) => a -> a -> [(a, a, a)]
+	triBtwn x y = filter (triangle) [(a,b,c) | a <- [x..y], b <- [x..y], c <- [x..y]]
+    	where triangle (a,b,c) = a + b > c

@@ -1,3 +1,3 @@
 @echo off
-subl fundump.hs
-start fundump.hs
+subl /
+start ghci

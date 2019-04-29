@@ -1,0 +1,65 @@
+1) Without explicitly taking parameters, write a function that determines if any given value is positive or not.
+	pos :: (Ord a, Num a) => a -> Bool 
+	pos = (>0)
+
+2) Rewrite the even function but take in no parameters directly, although a parameter will be coming in.
+	even' :: Integral a => a -> Bool
+	even' = \n -> mod n 2 == 0
+
+
+3) Using no list comprehension or recursion, get all of the first items out of a list of tuples.
+	fstList :: [(a,b)] -> [a]
+	fstList xs = map (fst) xs
+
+
+4) Without explicitly taking parameters, write a function that determines the first ? number of squares, where ? is the
+parameter. Use maps instead of list comprehension.
+	squares :: Integral a => a -> [a]
+	squares = \n -> map (^2) [1..n]
+
+5) Reverse a list of tuples (fst->snd, snd->fst). Can you do it without list comprehension?
+	revTuples :: [(a,b)] -> [(b,a)]
+	revTuple xs = map (\x -> (snd x, fst x)) xs
+
+6) After reading about filters, (apologizing for the really poor taste example in the chapter), where have you been using
+filters in Haskell already without explicity calling the word filter?
+	In the third part of list comprehension: [ _ | _ <- _, (here!)]
+
+
+7) IMDB has a bunch of movies with ratings in a list of tuples, [Title, Rating]. Without using list comprehension, instead
+use maps/filters/zip/whatever, find the number of movies which are rated above an 8.
+	above8 :: [(String, Int)] -> [(String, Int)]
+	above8 xs = filter (\y -> snd y > 8) xs
+
+8) Using a lambda and a filter, calculate all possible triangles with integer side lengths from x to y. Yay for resuing old
+questions. Reduce, reuse, and recycle.
+	triBtwn' :: (Ord a, Integral a) => a -> a -> [(a,a,a)] 
+	triBtwn' = \x y -> filter (triangle) [(a,b,c) | a <- [x..y], b <- [x..y], c <- [x..y]]
+                      where triangle (a,b,c) = a + b > c
+
+9) Skip ahead and learn how to get input. Write a segment of code which has a user type in their age and determines if
+they are allowed to vote or not yet.
+	canVote = do
+    	putStrLn "What is your age?"
+    	age <- getLine
+    	if (read age :: Int) > 17 then putStrLn "You can vote" else putStrLn "You can't vote"
+
+
+10) Have a user type in three numbers, start, stop, and delta, display all numbers from start to stop with delta skipping
+amount - unless the delta won't lead towards the stop, in which case display an error about that sequence not working.
+	sequencex = do
+    	putStrLn "What is the start"
+    	strt <- getLine
+    	putStrLn "What is the stop"
+    	stop <- getLine
+    	putStrLn "What is the delta"
+    	delt <- getLine
+    	let s1 = read strt :: Int
+    	let s2 = read stop :: Int
+    	let d  = read delt :: Int
+    	print (seqx s1 s2 d)
+
+	seqx str stp del 
+		| del < 0 && stp > 0 = error "Sequence will not work."
+		| del > 0 && stp < 0 = error "Sequence will not work."
+        | otherwise = [ str, str + del.. stp]
