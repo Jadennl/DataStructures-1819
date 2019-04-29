@@ -2,8 +2,8 @@
 	giveName :: String -> String
 	giveName xs
 	    | xs == "Jaden"   = "First Name"
-	    | xs == "Nikkos"  = "Middle Name"
-	    | xs == "Leonard" = "Last Name"
+	    | xs == "No"  = "Middle Name"
+	    | xs == "L" = "Last Name"
 	    | otherwise       = "Stranger Danger!"
 
 2) Write a function which accepts a tuple of three integers and returns "White", "Black", "Red", "Green", "Blue", "A shade of Gray", "Not a color", or "(#,#,#)" if it is a color.  At maximum use two if statements.  ex: colorName (255,255,255) -> "White"colorName (3,3,3) -> "A shade of Gray"colorName (300, 200, 500) -> "Not a color"
