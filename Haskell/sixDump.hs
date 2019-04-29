@@ -10,8 +10,8 @@ triple3 (_,_,z) = z
 giveName :: String -> String
 giveName xs
     | xs == "Jaden"   = "First Name"
-    | xs == "Nikkos"  = "Middle Name"
-    | xs == "Leonard" = "Last Name"
+    | xs == "No"  = "Middle Name"
+    | xs == "L" = "Last Name"
     | otherwise       = "Stranger Danger!"
 
 whatColor :: (Integer,Integer,Integer) -> String
